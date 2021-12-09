@@ -17,7 +17,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <EditText
+    <TextView
         android:id="@+id/title4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -25,14 +25,13 @@
         android:layout_marginTop="44dp"
         android:background="#00FFFFFF"
         android:clickable="false"
-        android:ems="4"
-        android:inputType="text"
         android:text="Create a"
+        android:textColor="#000000"
         android:textSize="60sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
+    <TextView
         android:id="@+id/title5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -40,8 +39,6 @@
         android:layout_marginTop="112dp"
         android:background="#00FFFFFF"
         android:clickable="false"
-        android:ems="3"
-        android:inputType="text"
         android:text="To Do"
         android:textColor="#7A7A7A"
         android:textColorHint="#FFFFFF"
