@@ -22,9 +22,13 @@ public interface ToDoDao {
     @Query("SELECT * FROM todo WHERE cat IN (:cat)")
     ToDo findByCategory(String cat);
 
+    @Query("UPDATE todo SET checked = :checked WHERE id == :id")
+    void updateChecked(int id, boolean checked);
+
     @Insert
     void insertAll(ToDo... todos);
 
     @Delete
     void delete(ToDo user);
+
 }

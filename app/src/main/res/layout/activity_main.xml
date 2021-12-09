@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/viewMain"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.MainActivity">
@@ -34,7 +35,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
+    <TextView
         android:id="@+id/title3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -42,8 +43,6 @@
         android:layout_marginTop="232dp"
         android:background="#00FFFFFF"
         android:clickable="false"
-        android:ems="3"
-        android:inputType="text"
         android:minHeight="48dp"
         android:text="To Do's:"
         android:textColor="#3E3E3E"
@@ -53,10 +52,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/toDoView"
         android:layout_width="341dp"
         android:layout_height="295dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginBottom="44dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="52dp"
         app:layout_constraintBottom_toTopOf="@+id/floatingActionButton"
         app:layout_constraintStart_toStartOf="parent"
         tools:listitem="@layout/fragment_todo_task" />
