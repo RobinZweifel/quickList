@@ -29,6 +29,6 @@ public interface ToDoDao {
     void insertAll(ToDo... todos);
 
     @Delete
-    void delete(ToDo user);
+    void delete(ToDo toDo);
 
 }
