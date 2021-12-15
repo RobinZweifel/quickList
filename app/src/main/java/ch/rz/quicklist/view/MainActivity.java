@@ -9,6 +9,8 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,11 +18,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
-import java.util.List;
-
 import ch.rz.quicklist.R;
+import ch.rz.quicklist.controller.GestureListener;
+import ch.rz.quicklist.controller.ToDoAdapter;
 import ch.rz.quicklist.model.AppDatabase;
-import ch.rz.quicklist.model.ToDo;
 import ch.rz.quicklist.model.ToDoDao;
 
 
@@ -29,7 +30,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     public String color;
     private SensorManager sensorManager;
     private Sensor tempSensor;
-    public int temprature;
+    public int temperature;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,24 +41,12 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         tempSensor = sensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE);
 
-        AppDatabase db = Room.databaseBuilder(getApplicationContext(),
-                AppDatabase.class, "todos").allowMainThreadQueries().fallbackToDestructiveMigration().build();
+        AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "todos").allowMainThreadQueries().fallbackToDestructiveMigration().build();
         ToDoDao toDoDao = db.toDoDao();
-
         RecyclerView list = findViewById(R.id.toDoView);
+
         list.setAdapter(new ToDoAdapter(toDoDao.getAll(), getApplicationContext()));
         list.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-
-        List<ToDo> toDoList = toDoDao.getAll();
-
-        /*
-        for (ToDo todo: toDoList) {
-            if(!todo.checked){
-                Log.e("Checked", todo.name);
-            }
-        }
-         */
-
 
     }
 
@@ -75,37 +65,33 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     @Override
     public final void onSensorChanged(SensorEvent event) {
         Log.e("test", "JAMANNNNN");
-        temprature = (int) event.values[0];
-        Log.e("Temptature", Integer.toString(temprature));
+        temperature = (int) event.values[0];
+        Log.e("Temptature", Integer.toString(temperature));
         View view = findViewById(R.id.viewMain);
-        if(temprature < -20){
+        if(temperature < -20){
             view.setBackgroundColor(Color.argb(30 ,0 , 0, 200));
         }
-        else if(temprature > -20 && temprature < -10){
+        else if(temperature > -20 && temperature < -10){
             view.setBackgroundColor(Color.argb(30 ,50 , 0, 100));
         }
-        else if(temprature > -10 && temprature < 0){
+        else if(temperature > -10 && temperature < 0){
             view.setBackgroundColor(Color.argb(30 ,100 , 0, 80));
         }
-        else if(temprature > 0 && temprature < 10){
+        else if(temperature > 0 && temperature < 10){
             view.setBackgroundColor(Color.argb(30 ,130 , 0, 60));
         }
-        else if(temprature > 10 && temprature < 20){
+        else if(temperature > 10 && temperature < 20){
             view.setBackgroundColor(Color.argb(30 ,170 , 0, 40));
         }
-        else if(temprature > 20 && temprature < 30){
+        else if(temperature > 20 && temperature < 30){
             view.setBackgroundColor(Color.argb(30 ,200 , 0, 20));
         }
-        else if(temprature > 30){
+        else if(temperature > 30){
             view.setBackgroundColor(Color.argb(30 ,230 , 0, 0));
 
         }
         //view.setBackgroundColor(Color.argb(10 ,Math.min(255, temprature*5) , , 0));
-        Log.e("Temp Log", Integer.toString(Math.min(255, temprature*5)));
-
-    }
-
-    public void calculateColor(int temp){
+        Log.e("Temp Log", Integer.toString(Math.min(255, temperature *5)));
 
     }
 

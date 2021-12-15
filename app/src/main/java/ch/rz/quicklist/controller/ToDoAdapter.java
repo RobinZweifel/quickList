@@ -1,12 +1,13 @@
-package ch.rz.quicklist.view;
+package ch.rz.quicklist.controller;
 
 import android.content.Context;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -54,7 +55,6 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ToDoViewHolder
 
     public static class ToDoViewHolder extends RecyclerView.ViewHolder {
         public CheckBox labelName;
-
         public ToDoViewHolder(@NonNull View itemView) {
             super(itemView);
             labelName = itemView.findViewById(R.id.fragmentContent);
